@@ -12,29 +12,29 @@ class TopNSpec extends Specification {
       findTop
         should return correct result for no value $noValue
         should return correct result for one value $oneValue
-        should return correct result for three value $threeValues
-        should return correct result for ten value $tenValues
+        should return correct result for three values $threeValues
+        should return correct result for ten values $tenValues
     """
 
   val topN = new TopN
 
   def noValue = {
-    topN.findTopN(3)(List.empty) must beEqualTo(
+    topN.findTopN(3)(Stream.empty) must beEqualTo(
       List.empty
     )
   }
   def oneValue = {
-    topN.findTopN(3)(List(1)) must beEqualTo(
+    topN.findTopN(3)(Stream(1)) must beEqualTo(
       List(1)
     )
   }
   def threeValues = {
-    topN.findTopN(3)(List(23, 589, 90)) must beEqualTo(
+    topN.findTopN(3)(Stream(23, 589, 90)) must beEqualTo(
       List(589, 90, 23)
     )
   }
   def tenValues = {
-    topN.findTopN(3)(List(133, 835, 295, 806, 364, 666, 717, 732, 835, 411)) must beEqualTo(
+    topN.findTopN(3)(Stream(133, 835, 295, 806, 364, 666, 717, 732, 835, 411)) must beEqualTo(
       List(835, 806, 732)
     )
   }
