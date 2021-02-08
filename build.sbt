@@ -3,16 +3,16 @@ import scalariform.formatter.preferences._
 import com.typesafe.sbt.SbtScalariform.ScalariformKeys
 
 // Dependencies
-val specs2Version = "4.3.3"
+val specs2Version = "4.10.6"
 val testDependencies = Seq (
-  "org.scalacheck"             %% "scalacheck"                     % "1.14.0"        % "test,it",
   "org.specs2"                 %% "specs2-core"                    % specs2Version   % "test,it",
   "org.specs2"                 %% "specs2-mock"                    % specs2Version   % "test,it",
   "org.specs2"                 %% "specs2-matcher-extra"           % specs2Version   % "test,it"
 )
 
 val rootDependencies = Seq(
-  "org.typelevel"              %% "cats-core"                      % "1.2.0"
+  "org.typelevel"              %% "cats-core"                      % "2.3.1",
+  "org.typelevel"              %% "cats-effect"                    % "2.3.1"
 )
 
 val dependencies =
@@ -24,8 +24,8 @@ val dependencies =
 val buildSettings = Seq(
   name := "interview-dataeng",
   organization := "io.ctek.interview",
-  scalaVersion := "2.12.6",
-  scalaBinaryVersion := "2.12"
+  scalaVersion := "2.13.4",
+  scalaBinaryVersion := "2.13"
 )
 
 val forkedJvmOption = Seq(
@@ -33,14 +33,8 @@ val forkedJvmOption = Seq(
   "-Dfile.encoding=UTF8",
   "-Duser.timezone=GMT",
   "-Xss1m",
-  "-Xms1048m",
-  "-Xmx1048m",
-  "-XX:+CMSClassUnloadingEnabled",
-  "-XX:+DoEscapeAnalysis",
-  "-XX:+UseConcMarkSweepGC",
-  "-XX:+UseParNewGC",
-  "-XX:+UseCodeCacheFlushing",
-  "-XX:+UseCompressedOops"
+  "-Xms1024m",
+  "-Xmx1024m"
 )
 
 val compileSettings = Seq(
@@ -51,12 +45,11 @@ val compileSettings = Seq(
     "-language:_",
     "-unchecked",
     "-Xlint",
-    "-Yno-adapted-args",
     "-Ywarn-dead-code",
     "-Ywarn-numeric-widen",
     "-Ywarn-value-discard",
-    "-Ywarn-unused-import",
-    "-Ypartial-unification"
+    "-Ywarn-unused:imports",
+    "-language:higherKinds"
   )
 )
 
@@ -97,7 +90,6 @@ val settings = Seq(
   libraryDependencies ++= dependencies,
   fork in run := true,
   fork in Test := true,
-  fork in testOnly := true,
   connectInput in run := true,
   javaOptions in run ++= forkedJvmOption,
   javaOptions in Test ++= forkedJvmOption,

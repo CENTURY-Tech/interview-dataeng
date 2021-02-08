@@ -1,6 +1,8 @@
 *.class
 *.log
 *.DS_Store
+.metals
+.bsp
 
 # sbt specific
 .cache
