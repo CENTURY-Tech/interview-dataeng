@@ -1,7 +1,7 @@
 package io.ctek.interview.dataeng
 
 class TopN {
-  def findTopN(n: Int)(stream: LazyList[Int]): List[Int] = {
+  def findTopN(n: Int)(it: Iterator[Int]): List[Int] = {
     ???
   }
 }

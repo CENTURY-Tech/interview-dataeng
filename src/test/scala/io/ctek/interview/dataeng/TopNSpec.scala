@@ -19,22 +19,22 @@ class TopNSpec extends Specification {
   val topN = new TopN
 
   def noValue = {
-    topN.findTopN(3)(LazyList.empty) must beEqualTo(
+    topN.findTopN(3)(Iterator.empty) must beEqualTo(
       List.empty
     )
   }
   def oneValue = {
-    topN.findTopN(3)(LazyList(1)) must beEqualTo(
+    topN.findTopN(3)(Iterator(1)) must beEqualTo(
       List(1)
     )
   }
   def threeValues = {
-    topN.findTopN(3)(LazyList(23, 589, 90)) must beEqualTo(
+    topN.findTopN(3)(Iterator(23, 589, 90)) must beEqualTo(
       List(589, 90, 23)
     )
   }
   def tenValues = {
-    topN.findTopN(3)(LazyList(133, 835, 295, 806, 364, 666, 717, 732, 835, 411)) must beEqualTo(
+    topN.findTopN(3)(Iterator(133, 835, 295, 806, 364, 666, 717, 732, 835, 411)) must beEqualTo(
       List(835, 806, 732)
     )
   }

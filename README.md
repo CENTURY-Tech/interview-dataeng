@@ -9,6 +9,6 @@ Please make sure this function fails in a proper way, similar to existing error 
 ## TopN
 This is a test of abstract data engineering skills.
 
-The function `findTopN(...)` in `TopN` is supposed to find the top N highest unique integers in a presumed endless stream of integers.
-To process the `Stream` of `Int`, you can only hold a few values in memory at a given time. Therefore, a memory efficient way to process
-this list is required.
+The function `findTopN(...)` in `TopN` is supposed to find the top N highest unique integers in a very large but finite `Iterator` of integers.
+To process the `Iterator` of `Int`, you can only hold a few values in memory at a given time as you have to assume the full `Iterator`
+does not fit into memory. Therefore, a memory efficient way to process this list is required.
